@@ -1,8 +1,9 @@
 // SPDX-License-Identifier: UNLICENSED
+// 0xa543D5e76e2adf69538cdA0439B62b413252906b
 pragma solidity ^0.8.4;
 
-import "../node_modules/@openzeppelin/contracts/access/Ownable.sol";
-import "../node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "../@openzeppelin/contracts/access/Ownable.sol";
+import "../@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
 contract DemoNFT is ERC721, Ownable {
     uint256 public mintPrice;
@@ -38,5 +39,18 @@ contract DemoNFT is ERC721, Ownable {
     function withdraw() external onlyOwner {
         (bool success, ) = withdrawWallet.call{ value: address(this).balance }('');
         require(success, 'withdraw failed!');
+    }
+
+    function mint(uint256 quantity_) public payable {
+        require(isPublicMintEnabled, 'minting not enabled');
+        require(msg.value == quantity_ * mintPrice, 'wrong mint value');
+        require(totalSupply + quantity_ <= maxSupply, 'sold out');
+        require(walletMints[msg.sender] + quantity_ <= maxPerWallet, 'exceed max wallet');
+
+        for (uint256 i = 0; i < quantity_; i++) {
+            uint256 newTokenId = totalSupply + 1;
+            totalSupply++;
+            _safeMint(msg.sender, newTokenId);
+        }
     }
 }

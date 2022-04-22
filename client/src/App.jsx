@@ -1,7 +1,13 @@
+import { useState } from "react";
+import { Navbar, MainMint } from "./components";
+
 const App = () => {
+  const [accounts, setAccount] = useState([]);
+
   return (
     <div className="App">
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+      <Navbar accounts={accounts} setAccount={setAccount} />
+      <MainMint accounts={accounts} setAccount={setAccount} />
     </div>
   );
 };
