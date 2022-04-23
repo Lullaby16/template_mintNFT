@@ -4,9 +4,9 @@ import DemoNFT from "../utils/DemoNFT.json";
 
 const ContractAddress = "0xa543D5e76e2adf69538cdA0439B62b413252906b";
 
-const MainMint = ({ accounts, setAccount }) => {
+const MainMint = ({ accounts }) => {
   const [mintAmount, setMintAccount] = useState(1);
-  const isConnected = Boolean[0];
+  const isConnected = Boolean(accounts[0]);
 
   const handleMint = async () => {
     if (window.ethereum) {
@@ -37,20 +37,30 @@ const MainMint = ({ accounts, setAccount }) => {
   };
 
   return (
-    <div>
-      <h1>DemoNFT</h1>
-      <p>
+    <div className="text-center font-vt323 self-center bg-black">
+      <p className="text-5xl">DemoNFT</p>
+      <p className="text-lg">
         It's 2069. Can the DemoNFT save humans from destructive rampant NFT
         speculation? Mint DemoNFT to find out.
       </p>
       {isConnected ? (
         <div>
           <div>
-            <button onClick={handleDecrement}>-</button>
-            <input type="number" value={mintAmount} />
-            <button onClick={handleIncrement}>+</button>
+            <button className="border-2" onClick={handleDecrement}>
+              -
+            </button>
+            <input
+              className="border-2 text-black"
+              type="number"
+              value={mintAmount}
+            />
+            <button className="border-2" onClick={handleIncrement}>
+              +
+            </button>
           </div>
-          <button onClick={handleMint}>Mint Now</button>
+          <button className="text-2xl" onClick={handleMint}>
+            Mint Now
+          </button>
         </div>
       ) : (
         <p>You must be connect your wallet to Mint.</p>
