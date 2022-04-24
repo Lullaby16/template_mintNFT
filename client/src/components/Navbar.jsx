@@ -24,9 +24,9 @@ const Navbar = ({ accounts, setAccounts }) => {
       </div>
 
       <div className="flex w-1/4 flex-row justify-around items-center">
-        <div>About</div>
-        <div>Mint</div>
-        <div>Team</div>
+        <div className="cursor-pointer">About</div>
+        <div className="cursor-pointer">Mint</div>
+        <div className="cursor-pointer">Team</div>
         {isConnected ? (
           <p>Connected</p>
         ) : (

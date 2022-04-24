@@ -18,7 +18,9 @@ const MainMint = ({ accounts }) => {
         signer
       );
       try {
-        const response = await contract.mint(BigNumber.from(mintAmount));
+        const response = await contract.mint(BigNumber.from(mintAmount), {
+          value: ethers.utils.parseEther((0.02 * mintAmount).toString()),
+        });
         console.log("Response: ", response);
       } catch (error) {
         console.log(error);
@@ -37,24 +39,24 @@ const MainMint = ({ accounts }) => {
   };
 
   return (
-    <div className="text-center font-vt323 self-center bg-black">
+    <div className="text-center font-vt323 mt-60">
       <p className="text-5xl">DemoNFT</p>
       <p className="text-lg">
         It's 2069. Can the DemoNFT save humans from destructive rampant NFT
         speculation? Mint DemoNFT to find out.
       </p>
       {isConnected ? (
-        <div>
+        <div className="mt-8">
           <div>
-            <button className="border-2" onClick={handleDecrement}>
+            <button className="border-2 w-5" onClick={handleDecrement}>
               -
             </button>
             <input
-              className="border-2 text-black"
+              className="border-2 text-black text-center"
               type="number"
               value={mintAmount}
             />
-            <button className="border-2" onClick={handleIncrement}>
+            <button className="border-2 w-5" onClick={handleIncrement}>
               +
             </button>
           </div>
