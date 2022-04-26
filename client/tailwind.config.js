@@ -3,7 +3,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        start: "Press Start 2P",
+        inco: "Inconsolata",
         vt323: "VT323",
       },
     },

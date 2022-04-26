@@ -40,10 +40,9 @@ const MainMint = ({ accounts }) => {
 
   return (
     <div className="text-center font-vt323 mt-60">
-      <p className="text-5xl">DemoNFT</p>
-      <p className="text-lg">
-        It's 2069. Can the DemoNFT save humans from destructive rampant NFT
-        speculation? Mint DemoNFT to find out.
+      <p className="text-7xl">AOX</p>
+      <p className="text-2xl">
+        Decentralized trading card game on blockchain. Mint AOX Card to play it.
       </p>
       {isConnected ? (
         <div className="mt-8">
@@ -60,7 +59,10 @@ const MainMint = ({ accounts }) => {
               +
             </button>
           </div>
-          <button className="text-2xl" onClick={handleMint}>
+          <button
+            className="text-2xl w-50 h-50 bg-[#D65170] rounded shadow-md cursor-pointer p-2 mt-5"
+            onClick={handleMint}
+          >
             Mint Now
           </button>
         </div>
