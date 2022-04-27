@@ -1,9 +1,10 @@
 // SPDX-License-Identifier: UNLICENSED
-// 0xa543D5e76e2adf69538cdA0439B62b413252906b
+
 pragma solidity ^0.8.4;
 
 import "../@openzeppelin/contracts/access/Ownable.sol";
 import "../@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "../@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
 
 contract DemoNFT is ERC721, Ownable {
     uint256 public mintPrice;
@@ -11,6 +12,7 @@ contract DemoNFT is ERC721, Ownable {
     uint256 public maxSupply;
     uint256 public maxPerWallet;
     bool public isPublicMintEnabled;
+    bytes32 public root;
     string internal baseTokenUri;
     address payable public withdrawWallet;
     mapping(address => uint256) public walletMints;
@@ -27,6 +29,14 @@ contract DemoNFT is ERC721, Ownable {
         isPublicMintEnabled = isPublicMintEnabled_;
     }
 
+    function setWhiteListWallet(bytes32 root_) external onlyOwner {
+        root = root_;
+    }
+
+    function isValid(bytes32[] memory proof, bytes32 leaf) private view returns (bool) {
+        return MerkleProof.verify(proof, root, leaf);
+    }
+
     function setBaseTokenUri(string calldata baseTokenUri_) external onlyOwner {
         baseTokenUri = baseTokenUri_;
     }
@@ -39,6 +49,20 @@ contract DemoNFT is ERC721, Ownable {
     function withdraw() external onlyOwner {
         (bool success, ) = withdrawWallet.call{ value: address(this).balance }('');
         require(success, 'withdraw failed!');
+    }
+
+    function whiteListMint(address to, uint256 quantity_, bytes32[] memory proof) public payable {
+        require(isPublicMintEnabled, 'minting not enabled');
+        require(msg.value == quantity_ * mintPrice, 'wrong mint value');
+        require(totalSupply + quantity_ <= maxSupply, 'sold out');
+        require(walletMints[msg.sender] + quantity_ <= maxPerWallet, 'exceed max wallet');
+        require(isValid(proof, keccak256(abi.encodePacked(msg.sender))), "Not a part of WhiteList");
+
+        for (uint256 i = 0; i < quantity_; i++) {
+            uint256 newTokenId = totalSupply + 1;
+            totalSupply++;
+            _safeMint(to, newTokenId);
+        }
     }
 
     function mint(uint256 quantity_) public payable {
