@@ -16,7 +16,7 @@ const Navbar = ({ accounts, setAccounts }) => {
   };
 
   return (
-    <nav className="flex flex-row justify-between items-center pt-5 pr-5 pl-5 text-center font-vt323 text-xl">
+    <div className="flex flex-row snap-start justify-between items-center py-5 px-5 text-center font-vt323 text-xl">
       <div className="flex w-1/4 flex-row justify-around items-center">
         <img className="w-10 cursor-pointer" src={Facebook} />
         <img className="w-10 cursor-pointer" src={Twitter} />
@@ -39,7 +39,7 @@ const Navbar = ({ accounts, setAccounts }) => {
           </button>
         )}
       </div>
-    </nav>
+    </div>
   );
 };
 
