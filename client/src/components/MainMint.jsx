@@ -39,7 +39,7 @@ const MainMint = ({ accounts }) => {
   };
 
   return (
-    <div className="flex flex-col snap-start bg-amber-200 w-screen h-screen text-center font-vt323 justify-center items-center">
+    <div className="flex flex-col snap-start bg-cyan-400 w-screen h-screen text-center font-vt323 justify-center items-center">
       <p className="text-7xl">AOX</p>
       <p className="text-2xl">
         Decentralized trading card game on blockchain. Mint AOX Card to play it.

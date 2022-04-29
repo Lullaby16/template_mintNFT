@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Navbar, MainMint, RoadMap } from "./components";
+import { Navbar, MainMint, RoadMap, Team, Game } from "./components";
 
 const App = () => {
   const [accounts, setAccounts] = useState([]);
@@ -9,6 +9,8 @@ const App = () => {
       <Navbar accounts={accounts} setAccounts={setAccounts} />
       <MainMint accounts={accounts} />
       <RoadMap />
+      <Game />
+      <Team />
     </div>
   );
 };
