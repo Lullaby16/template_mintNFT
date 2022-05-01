@@ -10,7 +10,7 @@ const Team = () => {
       <div className="flex w-full h-full items-center justify-center">
         <div>
           <p className="text-center mb-5 text-3xl">Founder</p>
-          <img src={Profile} className="" />
+          <img src={Profile} />
           <p className="text-center mt-5 text-3xl">Lullaby</p>
         </div>
       </div>

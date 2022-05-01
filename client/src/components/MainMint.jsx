@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ethers, BigNumber } from "ethers";
 import DemoNFT from "../utils/DemoNFT.json";
+import Banner from "../assets/card/Banner.png";
 
 const ContractAddress = "0xa543D5e76e2adf69538cdA0439B62b413252906b";
 
@@ -39,36 +40,42 @@ const MainMint = ({ accounts }) => {
   };
 
   return (
-    <div className="flex flex-col snap-start bg-cyan-400 w-screen h-screen text-center font-vt323 justify-center items-center">
-      <p className="text-7xl">AOX</p>
-      <p className="text-2xl">
-        Decentralized trading card game on blockchain. Mint AOX Card to play it.
-      </p>
-      {isConnected ? (
-        <div className="mt-8">
-          <div>
-            <button className="border-2 w-5" onClick={handleDecrement}>
-              -
-            </button>
-            <input
-              className="border-2 text-black text-center"
-              type="number"
-              value={mintAmount}
-            />
-            <button className="border-2 w-5" onClick={handleIncrement}>
-              +
+    <div className="flex flex-row snap-start bg-cyan-400 w-screen h-screen text-center font-vt323 justify-center items-center">
+      <div className="mr-5">
+        <p className="text-7xl">AOX</p>
+        <p className="text-2xl">
+          Decentralized trading card game on blockchain. Mint AOX Card to play
+          it.
+        </p>
+        {isConnected ? (
+          <div className="mt-8">
+            <div>
+              <button className="border-2 w-5" onClick={handleDecrement}>
+                -
+              </button>
+              <input
+                className="border-2 text-black text-center"
+                type="number"
+                value={mintAmount}
+              />
+              <button className="border-2 w-5" onClick={handleIncrement}>
+                +
+              </button>
+            </div>
+            <button
+              className="text-2xl w-50 h-50 bg-[#D65170] rounded shadow-md cursor-pointer p-2 mt-5"
+              onClick={handleMint}
+            >
+              Mint Now
             </button>
           </div>
-          <button
-            className="text-2xl w-50 h-50 bg-[#D65170] rounded shadow-md cursor-pointer p-2 mt-5"
-            onClick={handleMint}
-          >
-            Mint Now
-          </button>
-        </div>
-      ) : (
-        <p>You must be connect your wallet to Mint.</p>
-      )}
+        ) : (
+          <p>You must be connect your wallet to Mint.</p>
+        )}
+      </div>
+      <div className="ml-5">
+        <img src={Banner} />
+      </div>
     </div>
   );
 };
