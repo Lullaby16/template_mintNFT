@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
 
 const RoadMap = () => {
   const [isOpen, setIsOpen] = useState(false);
