@@ -5,6 +5,29 @@ import Banner from "../assets/card/Banner.png";
 
 const ContractAddress = "0xa543D5e76e2adf69538cdA0439B62b413252906b";
 
+const CountDown = () => {
+  return (
+    <div>
+      <div>
+        <h3>Time</h3>
+        <h3>Day</h3>
+      </div>
+      <div>
+        <h3>Time</h3>
+        <h3>Hour</h3>
+      </div>
+      <div>
+        <h3>Time</h3>
+        <h3>Minute</h3>
+      </div>
+      <div>
+        <h3>Time</h3>
+        <h3>Second</h3>
+      </div>
+    </div>
+  );
+};
+
 const MainMint = ({ accounts }) => {
   const [mintAmount, setMintAccount] = useState(1);
   const isConnected = Boolean(accounts[0]);
