@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Navbar, MainMint, RoadMap, Team, Game } from "./components";
+//import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 const App = () => {
   const [accounts, setAccounts] = useState([]);
